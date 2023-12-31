@@ -1,0 +1,31 @@
+name: news
+author: John Wass
+description: Action for changelog management
+branding:
+  icon: book-open
+  color: green
+
+
+inputs:
+  article_dir:
+    description: Directory containing news fragments
+    required: true
+    default: news
+  ignore_case:
+    description: Ignore case when matching labels and prefixes
+    required: true
+    default: true
+  contrib_guide:
+    description: URL of contribution guide
+    required: false
+    default: ''
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+    - run: |
+        python check.py --case_insensitive ${{ inputs.ignore_case }}  \
+                        --contrib_guide_url ${{ inputs.ignore_case }} \
+                        ${{ inputs.article_dir }}
