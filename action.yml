@@ -25,7 +25,8 @@ runs:
   steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
-    - run: |
+    - shell: bash
+      run: |
         python check.py --case_insensitive ${{ inputs.ignore_case }}  \
                         --contrib_guide_url ${{ inputs.ignore_case }} \
                         ${{ inputs.article_dir }}
