@@ -15,10 +15,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: test0
+      - name: No articles exist
         uses: ./
         with:
           article_dir: test/news0
+        env:
+          EVENT_PATH: test/e0.json
+
+      - name: No articles exist, specify contrib guide
+        uses: ./
+        with:
+          article_dir: test/news0
+          contrib_url: https://foo.bar/123.foo
         env:
           EVENT_PATH: test/e0.json
 
