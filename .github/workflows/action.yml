@@ -23,7 +23,7 @@ jobs:
           EVENT_PATH: test/e0.json
         continue-on-error: true
 
-      - name: Ignore missing article
+      - name: Ignore PR label
         uses: ./
         with:
           article_dir: test/news0
@@ -31,11 +31,11 @@ jobs:
         env:
           EVENT_PATH: test/e0.json
 
-      - name: No articles exist
+      - name: Ignore PR prefix
         uses: ./
         with:
           article_dir: test/news0
-
+          ignores: b00m
         env:
           EVENT_PATH: test/e0.json
 

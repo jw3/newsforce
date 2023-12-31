@@ -16,4 +16,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
       - run: |
-          echo "run tests against the python code"
+          EVENT_PATH=test/e1.json python check.py 
