@@ -11,7 +11,6 @@ permissions:
 
 jobs:
   check:
-    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,6 +21,7 @@ jobs:
           article_dir: test/news0
         env:
           EVENT_PATH: test/e0.json
+        continue-on-error: true
 
       - name: No articles exist, specify contrib guide
         uses: ./
@@ -30,6 +30,7 @@ jobs:
           contrib_url: https://foo.bar/123.foo
         env:
           EVENT_PATH: test/e0.json
+        continue-on-error: true
 
       - name: test1
         uses: ./
