@@ -10,18 +10,19 @@ inputs:
     description: Directory containing news fragments
     required: true
     default: news
-  contrib_url:
-    description: URL of contribution guide
-    required: false
-    default: ''
+  categories:
+    description: List of change categories
+    required: true
+    default: added,removed,changed,fixed,build
   ignores:
     description: List of labels to ignore
     required: true
     default: release,documentation
-  categories:
-    description: List of change categories
-    required: true
-    default: added,removed,changed,fixed,packaging,build
+  contrib_url:
+    description: URL of contribution guide
+    required: false
+    default: ''
+
 
 runs:
   using: composite
