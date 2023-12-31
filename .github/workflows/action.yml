@@ -23,7 +23,7 @@ jobs:
           EVENT_PATH: test/e0.json
         continue-on-error: true
 
-      - name: No articles exist
+      - name: Ignore missing article
         uses: ./
         with:
           article_dir: test/news0
