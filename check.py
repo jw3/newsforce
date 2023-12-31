@@ -4,24 +4,30 @@ import os
 import sys
 
 override_key = "EVENT_PATH"
+default_categories = ["added", "removed", "changed", "fixed", "build", "package"]
+default_ignores = ["release", "documentation"]
+
+
+def list_of_strings(arg):
+    return arg.split(',')
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("dir", help="Directory containing news articles")
-    parser.add_argument("-c", "--change_type", nargs="+", default=[], help="Add to the change type labels list")
-    parser.add_argument("--change_types", help="Replace the default change type labels list")
+    parser.add_argument("-c", "--category", nargs="+", default=[], help="Add to the categories list")
+    parser.add_argument("--categories", type=list_of_strings, help="Replace the default category list")
     parser.add_argument("-i", "--ignore_label", nargs="+", default=[], help="Add to the ignored labels list")
-    parser.add_argument("--ignored_labels", help="Replace the default list of ignored labels")
+    parser.add_argument("--ignored_labels", type=list_of_strings, help="Replace the default list of ignored labels")
     parser.add_argument("--contrib_guide_url", required=False, help="URL of contrib guide")
 
     args = parser.parse_args()
 
     articles_dir = args.dir
-    change_types = args.change_types if args.ignored_labels else ["added", "removed", "changed", "fixed"]
-    for change_type in args.change_type:
-        change_types.append(change_type)
-    ignored_labels = args.ignored_labels if args.ignored_labels else ["release", "documentation"]
+    categories = args.categories if args.categories else default_categories
+    for category in args.category:
+        categories.append(category)
+    ignored_labels = args.ignored_labels if args.ignored_labels else default_ignores
     for ignored_label in args.ignore_label:
         ignored_labels.append(ignored_label)
 
@@ -40,8 +46,8 @@ def main() -> int:
 
     pull_request_number = event["pull_request"]["number"]
 
-    for change_type in change_types:
-        article = f"{articles_dir}/{pull_request_number}.{change_type}.md"
+    for category in categories:
+        article = f"{articles_dir}/{pull_request_number}.{category}.md"
         if os.path.exists(article):
             print(f"Found article: {article}")
             return 0

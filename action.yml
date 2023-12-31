@@ -1,10 +1,9 @@
-name: news
+name: news check
 author: John Wass
 description: Action for changelog management
 branding:
   icon: book-open
   color: green
-
 
 inputs:
   article_dir:
