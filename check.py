@@ -12,13 +12,11 @@ def main():
     parser.add_argument("--change_types", help="Replace the default change type labels list")
     parser.add_argument("-i", "--ignore_label", nargs="+", default=[], help="Add to the ignored labels list")
     parser.add_argument("--ignored_labels", help="Replace the default list of ignored labels")
-    parser.add_argument("--case_insensitive", action="store_true", help="Match case in ignores")
     parser.add_argument("--contrib_guide_url", required=False, help="URL of contrib guide")
 
     args = parser.parse_args()
 
     articles_dir = args.dir
-    ignore_case = args.case_insensitive
     change_types = args.change_types if args.ignored_labels else ["added", "removed", "changed", "fixed"]
     for change_type in args.change_type:
         change_types.append(change_type)

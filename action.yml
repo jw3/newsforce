@@ -11,11 +11,7 @@ inputs:
     description: Directory containing news fragments
     required: true
     default: news
-  ignore_case:
-    description: Ignore case when matching labels and prefixes
-    required: true
-    default: true
-  contrib_guide:
+  contrib_url:
     description: URL of contribution guide
     required: false
     default: ''
@@ -27,5 +23,5 @@ runs:
     - uses: actions/setup-python@v4
     - shell: bash
       run: |
-        python check.py --contrib_guide_url=${{ inputs.contrib_guide }} \
+        python check.py --contrib_guide_url=${{ inputs.contrib_url }} \
                         ${{ inputs.article_dir }}
