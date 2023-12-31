@@ -1,11 +1,12 @@
 import argparse
 import json
 import os
+import sys
 
 override_key = "EVENT_PATH"
 
 
-def main():
+def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("dir", help="Directory containing news articles")
     parser.add_argument("-c", "--change_type", nargs="+", default=[], help="Add to the change type labels list")
@@ -54,4 +55,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
