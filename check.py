@@ -4,7 +4,7 @@ import os
 import sys
 
 override_key = "EVENT_PATH"
-default_categories = ["added", "removed", "changed", "fixed", "build", "package"]
+default_categories = ["added", "removed", "changed", "fixed", "packaging", "build"]
 default_ignores = ["release", "documentation"]
 
 
@@ -17,8 +17,8 @@ def main() -> int:
     parser.add_argument("dir", help="Directory containing news articles")
     parser.add_argument("-c", "--category", nargs="+", default=[], help="Add to the categories list")
     parser.add_argument("--categories", type=list_of_strings, help="Replace the default category list")
-    parser.add_argument("-i", "--ignore_label", nargs="+", default=[], help="Add to the ignored labels list")
-    parser.add_argument("--ignored_labels", type=list_of_strings, help="Replace the default list of ignored labels")
+    parser.add_argument("-i", "--ignore", nargs="+", default=[], help="Add to the ignored labels list")
+    parser.add_argument("--ignores", type=list_of_strings, help="Replace the default list of ignored labels")
     parser.add_argument("--contrib_guide_url", required=False, help="URL of contrib guide")
 
     args = parser.parse_args()
@@ -27,8 +27,8 @@ def main() -> int:
     categories = args.categories if args.categories else default_categories
     for category in args.category:
         categories.append(category)
-    ignored_labels = args.ignored_labels if args.ignored_labels else default_ignores
-    for ignored_label in args.ignore_label:
+    ignored_labels = args.ignores if args.ignores else default_ignores
+    for ignored_label in args.ignore:
         ignored_labels.append(ignored_label)
 
     event_path = os.environ.get(override_key) if override_key in os.environ else os.environ.get("GITHUB_EVENT_PATH")

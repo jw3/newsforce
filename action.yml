@@ -14,6 +14,14 @@ inputs:
     description: URL of contribution guide
     required: false
     default: ''
+  ignores:
+    description: List of labels to ignore
+    required: true
+    default: release,documentation
+  categories:
+    description: List of change categories
+    required: true
+    default: added,removed,changed,fixed,packaging,build
 
 runs:
   using: composite
@@ -22,5 +30,7 @@ runs:
     - uses: actions/setup-python@v4
     - shell: bash
       run: |
-        python check.py --contrib_guide_url=${{ inputs.contrib_url }} \
+        python check.py --categories=${{ inputs.categories }} \
+                        --ignores=${{ inputs.ignores }} \
+                        --contrib_guide_url=${{ inputs.contrib_url }} \
                         ${{ inputs.article_dir }}

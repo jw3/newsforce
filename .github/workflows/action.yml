@@ -23,6 +23,22 @@ jobs:
           EVENT_PATH: test/e0.json
         continue-on-error: true
 
+      - name: No articles exist
+        uses: ./
+        with:
+          article_dir: test/news0
+          ignores: please-ignore
+        env:
+          EVENT_PATH: test/e0.json
+
+      - name: No articles exist
+        uses: ./
+        with:
+          article_dir: test/news0
+
+        env:
+          EVENT_PATH: test/e0.json
+
       - name: No articles exist, specify contrib guide
         uses: ./
         with:
