@@ -2,10 +2,9 @@ import argparse
 import json
 import os
 import sys
+import yaml
 
 override_key = "EVENT_PATH"
-default_categories = ["added", "removed", "changed", "fixed", "packaging", "build"]
-default_ignores = ["release", "documentation"]
 
 
 def list_of_strings(arg):
@@ -22,8 +21,11 @@ def main() -> int:
 
     articles_dir = args.dir
 
-    categories = args.categories if args.categories else default_categories
-    ignored_labels = args.ignores if args.ignores else default_ignores
+    with open("action.yml") as yaml_file:
+        action_yml = yaml.safe_load(yaml_file)
+
+    categories = args.categories if args.categories else list_of_strings(action_yml["inputs"]["ignores"]["default"])
+    ignored_labels = args.ignores if args.ignores else list_of_strings(action_yml["inputs"]["categories"]["default"])
 
     event_path = os.environ.get(override_key) if override_key in os.environ else os.environ.get("GITHUB_EVENT_PATH")
     with open(event_path) as event_file:
