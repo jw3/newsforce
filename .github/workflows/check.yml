@@ -15,5 +15,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
-      - run: |
-          EVENT_PATH=test/e1.json python check.py test/news1
+      - run: pip install pytest
+      - run: pytest test
