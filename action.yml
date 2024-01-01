@@ -13,11 +13,11 @@ inputs:
   categories:
     description: List of change categories
     required: true
-    default: added,removed,changed,fixed,build
+    default: added,removed,changed,fixed,packaging
   ignores:
     description: List of labels to ignore
     required: true
-    default: release,documentation
+    default: ci,doc,release
   contrib_url:
     description: URL of contribution guide
     required: false
