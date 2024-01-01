@@ -1,31 +1,39 @@
-name: news
+name: news force
 author: John Wass
-description: Action for changelog management
+description: Enforce changelog entries on pull requests
 branding:
   icon: book-open
   color: green
-
 
 inputs:
   article_dir:
     description: Directory containing news fragments
     required: true
     default: news
-  ignore_case:
-    description: Ignore case when matching labels and prefixes
+  categories:
+    description: List of change categories
     required: true
-    default: true
-  contrib_guide:
+    default: added,removed,changed,fixed,packaging
+  ignores:
+    description: List of labels to ignore
+    required: true
+    default: ci,doc,release
+  contrib_url:
     description: URL of contribution guide
     required: false
-    default: ''
+    default: ""
 
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
-    - run: |
-        python check.py --case_insensitive ${{ inputs.ignore_case }}  \
-                        --contrib_guide_url ${{ inputs.ignore_case }} \
+      with:
+         cache: "pip"
+    - shell: bash
+      run: pip install -r requirements.txt
+    - shell: bash
+      run: |
+        python check.py --categories=${{ inputs.categories }} \
+                        --ignores=${{ inputs.ignores }} \
+                        --contrib_guide_url=${{ inputs.contrib_url }} \
                         ${{ inputs.article_dir }}

@@ -1,0 +1,56 @@
+name: action-ci
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: No articles exist
+        uses: ./
+        with:
+          article_dir: test/news0
+        env:
+          EVENT_PATH: test/e0.json
+        continue-on-error: true
+
+      - name: Ignore PR label
+        uses: ./
+        with:
+          article_dir: test/news0
+          ignores: please-ignore
+        env:
+          EVENT_PATH: test/e0.json
+
+      - name: Ignore PR prefix
+        uses: ./
+        with:
+          article_dir: test/news0
+          ignores: b00m
+        env:
+          EVENT_PATH: test/e0.json
+
+      - name: No articles exist, specify contrib guide
+        uses: ./
+        with:
+          article_dir: test/news0
+          contrib_url: https://foo.bar/123.foo
+        env:
+          EVENT_PATH: test/e0.json
+        continue-on-error: true
+
+      - name: test1
+        uses: ./
+        with:
+          article_dir: test/news1
+        env:
+          EVENT_PATH: test/e1.json
