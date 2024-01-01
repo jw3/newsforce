@@ -1,9 +1,7 @@
 News Force Action
 ===
 
-This GitHub Action provides enforcement of changelog entries on PRs.
-
-This action ensures that a news article that relates to the current PR has been created.
+This GitHub Action enforces changelog entries on PRs.
 
 ## Example workflow
 
@@ -20,6 +18,8 @@ jobs:
 ```
 
 ## towncrier
+
+This action ensures that a news article that relates to the current PR has been created.
 
 The intended consumer of the news articles is `towncrier`.
 
