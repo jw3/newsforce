@@ -1,20 +1,20 @@
-News Check Action
+News Force Action
 ===
 
-This GitHub Action provides an opinionated interface to enforce changelog entries on PRs for towncrier.
+This GitHub Action provides enforcement of changelog entries on PRs.
 
 ## Example workflow
 
 ```yaml
 name: build
-on: [push, pull_request]
+on: pull_request
 
 jobs:
-  rpm:
+  enforce-changelog:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: jw3/newscheck@v0
+      - uses: jw3/newsforce@v0
 ```
 
 ## License

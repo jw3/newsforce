@@ -8,7 +8,7 @@ override_key = "EVENT_PATH"
 
 
 def list_of_strings(arg):
-    return arg.split(',')
+    return arg.split(",")
 
 
 def main(articles_dir, ignore_list=None, category_list=None, contrib_url=None) -> int:
@@ -47,7 +47,7 @@ def main(articles_dir, ignore_list=None, category_list=None, contrib_url=None) -
     return 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("dir", help="Directory containing news articles")
     parser.add_argument("-c", "--categories", type=list_of_strings, help="Update the category list")

@@ -1,6 +1,6 @@
-name: news check
+name: news force
 author: John Wass
-description: Action for changelog management
+description: Enforce changelog entries on pull requests
 branding:
   icon: book-open
   color: green
@@ -21,7 +21,7 @@ inputs:
   contrib_url:
     description: URL of contribution guide
     required: false
-    default: ''
+    default: ""
 
 
 runs:
@@ -29,7 +29,7 @@ runs:
   steps:
     - uses: actions/setup-python@v4
       with:
-         cache: 'pip'
+         cache: "pip"
     - shell: bash
       run: pip install -r requirements.txt
     - shell: bash
