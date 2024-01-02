@@ -31,11 +31,19 @@ jobs:
         env:
           EVENT_PATH: test/e0.json
 
-      - name: Ignore PR prefix
+      - name: Ignore PR prefix (single)
         uses: ./
         with:
           article_dir: test/news0
           ignores: b00m
+        env:
+          EVENT_PATH: test/e0.json
+
+      - name: Ignore PR prefix (multiple ignores)
+        uses: ./
+        with:
+          article_dir: test/news0
+          ignores: b00m,bAAm
         env:
           EVENT_PATH: test/e0.json
 
