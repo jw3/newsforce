@@ -1,6 +1,6 @@
 name: news force
-author: John Wass
 description: Enforce changelog entries on pull requests
+author: John Wass
 branding:
   icon: book-open
   color: green
