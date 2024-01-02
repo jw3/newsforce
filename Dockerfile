@@ -1,7 +1,9 @@
 FROM python:3.12-slim
 
-COPY . /action
+WORKDIR /github/workspace
 
-RUN pip install -U pip -r /action/requirements.txt
+COPY . .
 
-CMD [ "/action/entrypoint.sh" ]
+RUN pip install -U pip -r requirements.txt
+
+CMD [ "entrypoint.sh" ]
