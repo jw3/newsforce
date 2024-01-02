@@ -4,4 +4,4 @@ COPY . /action
 
 RUN pip install -U pip -r /action/requirements.txt
 
-CMD [ "python", "/action/entrypoint.sh" ]
+CMD [ "/action/entrypoint.sh" ]
