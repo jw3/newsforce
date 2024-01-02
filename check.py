@@ -16,12 +16,12 @@ def main(articles_dir, ignore_list=None, category_list=None, contrib_url=None) -
         action_yml = yaml.safe_load(yaml_file)
 
     categories = (
-        category_list
+        list_of_strings(category_list)
         if category_list
         else list_of_strings(action_yml["inputs"]["categories"]["default"])
     )
     ignored_labels = (
-        ignore_list
+        list_of_strings(ignore_list)
         if ignore_list
         else list_of_strings(action_yml["inputs"]["ignores"]["default"])
     )
