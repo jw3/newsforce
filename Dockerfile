@@ -2,6 +2,8 @@ FROM python:3.12-slim
 
 COPY . /action
 
-RUN pip install -U pip -r /action/requirements.txt
+WORKDIR /action
 
-CMD [ "/action/entrypoint.sh" ]
+RUN pip install -U pip -r requirements.txt
+
+CMD [ "entrypoint.sh" ]
