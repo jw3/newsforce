@@ -1,6 +1,6 @@
 name: news force
-author: John Wass
 description: Enforce changelog entries on pull requests
+author: John Wass
 branding:
   icon: book-open
   color: green
@@ -24,16 +24,5 @@ inputs:
     default: ""
 
 runs:
-  using: composite
-  steps:
-    - uses: actions/setup-python@v4
-      with:
-         cache: "pip"
-    - shell: bash
-      run: pip install -r requirements.txt
-    - shell: bash
-      run: |
-        python check.py --categories=${{ inputs.categories }} \
-                        --ignores=${{ inputs.ignores }} \
-                        --contrib_guide_url=${{ inputs.contrib_url }} \
-                        ${{ inputs.article_dir }}
+  using: docker
+  image: Dockerfile

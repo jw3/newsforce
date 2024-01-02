@@ -2,6 +2,10 @@
   "pull_request": {
     "number": 123,
     "title": "b00m: foo",
-    "labels": ["please-ignore"]
+    "labels": [
+      {
+        "name": "please-ignore"
+      }
+    ]
   }
 }
