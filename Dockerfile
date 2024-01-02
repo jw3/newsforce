@@ -8,4 +8,6 @@ COPY . .
 
 RUN pip install -U pip -r requirements.txt
 
+RUN ls -al
+
 CMD [ "entrypoint.sh" ]
