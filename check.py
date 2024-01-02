@@ -26,9 +26,6 @@ def main(articles_dir, ignore_list=None, category_list=None, contrib_url=None) -
         else list_of_strings(action_yml["inputs"]["ignores"]["default"])
     )
 
-    print(categories)
-    print(ignored_labels)
-
     event_path = (
         os.environ.get(override_key)
         if override_key in os.environ
@@ -36,6 +33,10 @@ def main(articles_dir, ignore_list=None, category_list=None, contrib_url=None) -
     )
     with open(event_path) as event_file:
         event = json.load(event_file)
+
+    print(categories)
+    print(ignored_labels)
+    print(event)
 
     for label in ignored_labels:
         if event["pull_request"]["title"].startswith(f"{label}:"):
