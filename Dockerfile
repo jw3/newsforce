@@ -6,4 +6,4 @@ WORKDIR /action
 
 RUN pip install -U pip -r requirements.txt
 
-CMD [ "entrypoint.sh" ]
+CMD [ "./entrypoint.sh" ]
