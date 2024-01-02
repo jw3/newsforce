@@ -2,6 +2,10 @@
   "pull_request": {
     "number": 123,
     "title": "Great stuff",
-    "labels": ["ignore"]
+    "labels": [
+      {
+        "name": "ignore"
+      }
+    ]
   }
 }
