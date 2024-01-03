@@ -22,6 +22,10 @@ inputs:
     description: URL of contribution guide
     required: false
     default: ""
+  debug:
+    description: Show additional info to aid debugging
+    required: false
+
 
 runs:
   using: docker
