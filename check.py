@@ -39,10 +39,10 @@ def main(articles_dir, ignore_list=None, category_list=None, contrib_url=None) -
             print(f"Skipped on title prefix: {ignored}")
             return 0
 
-        for label in event["pull_request"]["labels"]:
-            if label["name"] == ignored:
-                print(f"Skipped on PR label: {label['name']}")
-                return 0
+    for label in event["pull_request"]["labels"]:
+        if label["name"] in ignored_labels:
+            print(f"Skipped on PR label: {label['name']}")
+            return 0
 
     pull_request_number = event["pull_request"]["number"]
 
