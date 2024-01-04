@@ -3,10 +3,7 @@ import os
 import check as checker
 
 
-# returns:
-#  1: OK
-#  0: Not OK
-def passing(event, article_dir, ignores=None, categories=None, contrib_url=None):
+def passing(event, article_dir, ignores=None, categories=None, contrib_url=None) -> bool:
     os.environ["EVENT_PATH"] = f"test/{event}.json"
     return not checker.main(f"test/{article_dir}", ignores, categories, contrib_url)
 
