@@ -35,14 +35,15 @@ def main(articles_dir, ignore_list=None, category_list=None, contrib_url=None) -
         event = json.load(event_file)
 
     for ignored in ignored_labels:
-        if event["pull_request"]["title"].startswith(f"{ignored}:"):
+        tag = event["pull_request"]["title"].split(":", maxsplit=1)[0]
+        if tag.casefold() == ignored.casefold():
             print(f"Skipped on title prefix: {ignored}")
             return 0
 
-    for label in event["pull_request"]["labels"]:
-        if label["name"] in ignored_labels:
-            print(f"Skipped on PR label: {label['name']}")
-            return 0
+        for label in event["pull_request"]["labels"]:
+            if label["name"].casefold() == ignored.casefold():
+                print(f"Skipped on PR label: {label['name']}")
+                return 0
 
     pull_request_number = event["pull_request"]["number"]
 
